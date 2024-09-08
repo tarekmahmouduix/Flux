@@ -5,7 +5,7 @@ local newFrame = Instance.new("Frame", newStarterGui)
 
 local pattern = "(:%w+)%-(%w+)%-%[(%d*%.?%d+)([%a%%]*)%]"
 
-local function testPattern(input)
+--[[local function testPattern(input)
     local matches = {input:match(pattern)}
     
     if #matches > 0 then
@@ -21,7 +21,7 @@ end
 
 -- Test input
 local input = ":hover-bg-[50%]"
-testPattern(input) -- Should match: :hover, bg-red, 255,0,0, (empty or specific unit)
+testPattern(input) -- Should match: :hover, bg-red, 255,0,0, (empty or specific unit)--]]
 
 
-styleApplier.applyStyles(newFrame, "s-[30%] bgtrans-[.3] :hover-bg-[50%]")
+styleApplier.applyStyles(newFrame, "s-[50%] bg-[0,200,0] :hover-bg-[0,255,0]")
