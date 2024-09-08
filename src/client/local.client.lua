@@ -3,16 +3,25 @@ local styleApplier = require(game.ReplicatedStorage.core.StyleApplier)
 local newStarterGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 local newFrame = Instance.new("Frame", newStarterGui)
 
-local pattern = "([%w%-]+)%[?(%d*%.?%d*)%s*([%w%%%-]*)%]?%s*(%:[%w%-]+)?"
+local pattern = "(:%w+)%-(%w+)%-%[(%d*%.?%d+)([%a%%]*)%]"
+
+local function testPattern(input)
+    local matches = {input:match(pattern)}
+    
+    if #matches > 0 then
+        print("Pattern Matches!")
+        print("Pseudo-class:", matches[1] or "nil")
+        print("Category:", matches[2] or "nil")
+        print("Value:", matches[3] or "nil")
+        print("Unit:", matches[4] or "nil")
+    else
+        print("No match found.")
+    end
+end
+
+-- Test input
+local input = ":hover-bg-[50%]"
+testPattern(input) -- Should match: :hover, bg-red, 255,0,0, (empty or specific unit)
 
 
-local test_string = "identifier[12.34px]:property"
-local name, number, unit, property = test_string:match(pattern)
-
-print("Name:", name)          -- identifier
-print("Number:", number)      -- 12.34
-print("Unit:", unit)          -- px
-print("Property:", property)  -- :property
-
-
-styleApplier.applyStyles(newFrame, "s-[30%] bg-[160,70,90] bgtrans-[.3]")
+styleApplier.applyStyles(newFrame, "s-[30%] bgtrans-[.3] :hover-bg-[50%]")
