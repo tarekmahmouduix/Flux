@@ -1,0 +1,29 @@
+{
+  "name": "New folder",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "core": {
+        "$className": "Folder",
+        "$path": "src/core"
+      },
+
+      "plugins": {
+        "$className": "Folder",
+        "$path": "src/plugins"
+      },
+
+      "tests": {
+        "$className": "Folder",
+        "$path": "tests"
+      }
+    },
+    "StarterGui": {
+      "client": {
+        "$className": "Folder",
+        "$path": "src/client"
+      }
+    }
+  }
+}
