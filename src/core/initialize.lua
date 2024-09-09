@@ -1,20 +1,7 @@
 -- style__apply.lua
 local patternsModule = require(script.Parent.config.patterns)  -- Adjust the path as needed
-local config = require(script.Parent.stylesConfig)  -- Adjust the path as needed
 
 local style__apply = {}
-
--- Apply the predefined styles from config
-local function applyPredefinedStyle(guiElement, className)
-    for category, styles in pairs(config) do
-        if styles[className] then
-            print("Applying predefined style for className:", className)
-            styles[className](guiElement)
-            return true
-        end
-    end
-    return false
-end
 
 -- Apply static styles
 function applyStaticStyles(guiElement, className)
@@ -34,7 +21,6 @@ function style__apply.applyStyles(guiElement, className)
     local classes = string.split(className, " ")
 
     for _, class in ipairs(classes) do
-        if not applyPredefinedStyle(guiElement, class) then
             local matched = false
             for _, entry in ipairs(patternsModule.patterns) do
                 local matches = {class:match(entry.pattern)}
@@ -45,8 +31,7 @@ function style__apply.applyStyles(guiElement, className)
                 end
             end
             if not matched then
-                print("No matching pattern found for: " .. class)
-            end
+            print("No matching pattern found for: " .. class)
         end
     end
 end

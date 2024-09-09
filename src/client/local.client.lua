@@ -2,7 +2,9 @@ local styleApplier = require(game.ReplicatedStorage:WaitForChild("core").initial
 local newStarterGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 local newFrame = Instance.new("TextButton", newStarterGui)
 
-styleApplier.applyStyles(newFrame, "s-[50%] hover:bg-[255,0,0] hover:size-x-[2sc] hover:size-y-[1sc]")
+newFrame.Position = UDim2.new(.3,0,0,0)
+
+styleApplier.applyStyles(newFrame, "s-[50%] hover:pos-x-[50%] hover:bg-[0,0,250]")
 
 --[[local class = ":hover-size-x-[50%]"
 local pattern = "^(:%w+)%-(%w+)%-(%w*)%-%[(%d*%.?%d+)([%a%%]*)%]$" -- numeric 

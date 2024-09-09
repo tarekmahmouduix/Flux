@@ -1,6 +1,33 @@
 -- patternsModule.lua
 local patternsModule = {}
 local styleHandlers = require(script.Parent.Parent.StyleHandler)  -- Adjust the path as needed
+local config = require(script.Parent.Parent.stylesConfig)
+
+local propertyMappings = {
+    s = {
+        x = "Size",
+        y = "Size"
+    },
+    pos = {
+        x = "Position",
+        y = "Position"
+    },
+    bg = {
+        color = "BackgroundColor3"
+    }
+}
+
+
+local function applyPredefinedStyle(guiElement, className)
+    for category, styles in pairs(config) do
+        if styles[className] then
+            print("Applying predefined style for className:", className)
+            styles[className](guiElement)
+            return true
+        end
+    end
+    return false
+end
 
 patternsModule.patterns = {
     -- Size Pattern
@@ -8,27 +35,48 @@ patternsModule.patterns = {
         pattern = "^(%w+:)(%w+)%-(%w*)%-%[(%d*%.?%d+)([%a%%]*)%]$",
         handler = function(guiElement, pseudoClass, category, property, value, unit)
             local applySize = function()
-                if property == "x" then
-                    guiElement.Size = UDim2.new(unit == "%" and value / 100 or value, guiElement.Size.X.Offset, guiElement.Size.Y.Scale, guiElement.Size.Y.Offset)
-                elseif property == "y" then
-                    guiElement.Size = UDim2.new(guiElement.Size.X.Scale, guiElement.Size.X.Offset, unit == "%" and value / 100 or value, guiElement.Size.Y.Offset)
+                if category == "s" then
+                    if property == "x" then
+                        guiElement.Size = UDim2.new(unit == "%" and value / 100 or value, guiElement.Size.X.Offset, guiElement.Size.Y.Scale, guiElement.Size.Y.Offset)
+                    elseif property == "y" then
+                        guiElement.Size = UDim2.new(guiElement.Size.X.Scale, guiElement.Size.X.Offset, unit == "%" and value / 100 or value, guiElement.Size.Y.Offset)
+                    end
+                elseif category == "pos" then
+                    if property == "x" then
+                        guiElement.Position = UDim2.new(unit == "%" and value / 100 or value, guiElement.Position.X.Offset, guiElement.Position.Y.Scale, guiElement.Position.Y.Offset)
+                    elseif property == "y" then
+                        guiElement.Position = UDim2.new(guiElement.Position.X.Scale, guiElement.Position.X.Offset, unit == "%" and value / 100 or value, guiElement.Position.Y.Offset)
+                    end
                 end
+
             end
 
             if pseudoClass == "hover:" then
-                local originalSize = guiElement.Size
+                local mappedProperty = propertyMappings[category][property]
+                if not propertyMappings[category] or not propertyMappings[category][property] then
+                    warn("Invalid category or property:", category, property)
+                    return
+                end                
+                local originalSize = guiElement[mappedProperty]
                 guiElement.MouseEnter:Connect(function()
                     applySize()
-                end)
+                end)          
                 guiElement.MouseLeave:Connect(function()
-                    guiElement.Size = originalSize
+                    guiElement[mappedProperty] = originalSize
                 end)
+            elseif pseudoClass == "active:" then
+                guiElement.Activated:Connect(function(inputObject, clickCount)
+                    print("hello", inputObject)
+                end)
+            elseif pseudoClass == "disabled:" then
+                if guiElement.Active == false then
+                    print("hello2")
+                end
             else
                 applySize()
             end
         end
     },
-
     -- Border Pattern
     {
         pattern = "^(%w+:)(%w+)%-%[(%d+)%]$",
@@ -48,14 +96,6 @@ patternsModule.patterns = {
             else
                 applyBorder()
             end
-        end
-    },
-
-    -- State-Class Pattern
-    {
-        pattern = "^(%w+:)(%w+)%-(%w+)%-%[(%d*%.?%d+)([%a%%]*)%]$",
-        handler = function(guiElement, pseudoClass, category, value, unit)
-            -- Handle state-class based on the pseudoClass
         end
     },
 

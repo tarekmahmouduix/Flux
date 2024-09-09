@@ -86,7 +86,7 @@ local config = {
             guiElement.TextColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
         end,
     },
-    backgroundColors = {
+    bg = {
         ["bg-gray-50"] = function(guiElement)
             guiElement.BackgroundColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
         end,
