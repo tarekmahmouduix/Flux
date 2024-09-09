@@ -27,7 +27,6 @@ local styleHandlers = {
         end
     end,
     ["bg"] = function(guiElement : GuiObject, value, unit)
-        print("triggered atleast.:(")
         local r, g, b = value:match("(%d+),(%d+),(%d+)")
         if r and g and b then
             guiElement.BackgroundColor3 = Color3.fromRGB(tonumber(r), tonumber(g), tonumber(b))

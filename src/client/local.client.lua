@@ -1,27 +1,21 @@
-local styleApplier = require(game.ReplicatedStorage.core.StyleApplier)
-
+local styleApplier = require(game.ReplicatedStorage:WaitForChild("core").initialize)
 local newStarterGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
-local newFrame = Instance.new("Frame", newStarterGui)
+local newFrame = Instance.new("TextButton", newStarterGui)
 
-local pattern = "(:%w+)%-(%w+)%-%[(%d*%.?%d+)([%a%%]*)%]"
+styleApplier.applyStyles(newFrame, "s-[50%] hover:bg-[255,0,0] hover:size-x-[2sc] hover:size-y-[1sc]")
 
---[[local function testPattern(input)
-    local matches = {input:match(pattern)}
-    
-    if #matches > 0 then
-        print("Pattern Matches!")
-        print("Pseudo-class:", matches[1] or "nil")
-        print("Category:", matches[2] or "nil")
-        print("Value:", matches[3] or "nil")
-        print("Unit:", matches[4] or "nil")
-    else
-        print("No match found.")
-    end
-end
+--[[local class = ":hover-size-x-[50%]"
+local pattern = "^(:%w+)%-(%w+)%-(%w*)%-%[(%d*%.?%d+)([%a%%]*)%]$" -- numeric 
+local prefix, category, property, r, g, b = class:match(pattern)
 
--- Test input
-local input = ":hover-bg-[50%]"
-testPattern(input) -- Should match: :hover, bg-red, 255,0,0, (empty or specific unit)--]]
+if prefix and category and property then
+    print("Prefix:", prefix)
+    print("Category:", category)
+    print("Property:", property)
+    print("r:", r)
+    print("g:", g)
+    print("b:", b)
+end--]]
 
 
-styleApplier.applyStyles(newFrame, "s-[50%] bg-[0,200,0] :hover-bg-[0,255,0]")
+--ps[":hover"](newFrame, "BackgroundColor3", "0,250,0", "RGB")
