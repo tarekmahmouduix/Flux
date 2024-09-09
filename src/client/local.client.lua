@@ -4,19 +4,19 @@ local newFrame = Instance.new("TextButton", newStarterGui)
 
 newFrame.Position = UDim2.new(.3,0,0,0)
 
-styleApplier.applyStyles(newFrame, "s-[50%] hover:pos-x-[50%] hover:bg-[0,0,250]")
+styleApplier.applyStyles(newFrame, "s-[50%] hover:item-rotate-[30deg]")
 
---[[local class = ":hover-size-x-[50%]"
-local pattern = "^(:%w+)%-(%w+)%-(%w*)%-%[(%d*%.?%d+)([%a%%]*)%]$" -- numeric 
-local prefix, category, property, r, g, b = class:match(pattern)
 
-if prefix and category and property then
-    print("Prefix:", prefix)
+--[[local class = "hover:bg-opacity-[50%]"
+local pattern = "^(%w+:)(%w+)%-(%w+)%-%[(%d*%.?%d+)([%%]*)%]$" -- numeric 
+local pseudoClass, category, property, value, unit = class:match(pattern)
+
+if pseudoClass and category and property then
+    print("Prefix:", pseudoClass)
     print("Category:", category)
     print("Property:", property)
-    print("r:", r)
-    print("g:", g)
-    print("b:", b)
+    print("v:", value)
+    print("u:", unit)
 end--]]
 
 
