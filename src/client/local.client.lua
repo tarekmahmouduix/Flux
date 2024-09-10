@@ -3,7 +3,7 @@ local newStarterGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerG
 local newFrame = Instance.new("TextLabel", newStarterGui)
 newFrame.Position = UDim2.new(.3,0,0,0)
 newFrame.Text = "Welcome, jaybeemvoid!"
-styleApplier.applyStyles(newFrame, "align-center s-lg round-lg bg-opacity-50 text-white text-xl font-gotham font-bold text-center text-top")
+styleApplier.applyStyles(newFrame, "s-lg text-top bg-[30,30,30] round-md bg-opacity-50 align-center text-lg font-bold hover:bg-[30,30,30] hover:bg-opacity-[90%] text-[255,255,255]")
 --[[local pattern = "^(%w+)%-([%w%-]+)$"
 
 local testStrings = {

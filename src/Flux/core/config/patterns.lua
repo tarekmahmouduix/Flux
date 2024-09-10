@@ -153,6 +153,39 @@ patternsModule.patterns = {
         end
     },
     {
+        pattern = "^(%w+:)(%w+)%-%[(%d+),(%d+),(%d+)%]$",
+        handler = function(guiElement, pseudoClass, category, r, g, b)
+            local color = Color3.fromRGB(tonumber(r), tonumber(g), tonumber(b))
+            local property = propertyMappings[category] and propertyMappings[category].color
+            if not property then
+                warn("Invalid category for color:", category)
+                return
+            end
+
+            local applyColor = function()
+                if property == "BackgroundColor3" then
+                    guiElement.BackgroundColor3 = color
+                elseif property == "TextColor3" then
+                    guiElement.TextColor3 = color
+                elseif property == "BorderColor3" then
+                    guiElement.BorderColor3 = color
+                end
+            end
+
+            if pseudoClass == "hover:" then
+                local originalColor = guiElement[property]
+                guiElement.MouseEnter:Connect(function()
+                    applyColor()
+                end)
+                guiElement.MouseLeave:Connect(function()
+                    guiElement[property] = originalColor
+                end)
+            else
+                applyColor()
+            end
+        end
+    },
+    {
         pattern = "^(%w+:)(%w+)%-(%w+)$",
         handler = function(guiElement, pseudoClass, category, value)
             local handler = config[category]
@@ -262,12 +295,12 @@ patternsModule.patterns = {
                 realcat = "size"
             elseif category == "z" then
                 realcat = "zindex"
+            elseif category == "text" or "font" then
+                realcat = category
             else
                 warn("Unknown category:", category)
                 return
             end
-    
-            print(category, key)
     
             -- Retrieve and apply the style function
             local styleFunction = config[realcat] and config[realcat][key]
@@ -326,7 +359,6 @@ patternsModule.patterns = {
     {
         pattern = "^(%w+)%-(%w+)$",
         handler = function(guiElement, category, property)
-            print(category, property)
             local key = category .. "-" .. property
             local styleFunction = config[category] and config[category][key]
             if styleFunction then
@@ -336,7 +368,6 @@ patternsModule.patterns = {
             end
         end
     },
-
     {
         pattern = "^(%w+)%-%[(%d+),(%d+),(%d+)%]$",
         handler = function(guiElement, colorCategory, r, g, b)
