@@ -1,0 +1,4 @@
+title: "My Project Documentation"
+description: "Documentation for my awesome project."
+theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
