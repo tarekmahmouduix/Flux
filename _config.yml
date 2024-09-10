@@ -2,3 +2,28 @@ title: "My Documentation"
 description: "API Documentation for My Framework"
 theme: just-the-docs
 remote_theme: pmarsceill/just-the-docs
+
+# Optional: To set the base URL if you're deploying to a subpath
+# baseurl: "/docs"
+
+# Enable the sidebar
+just-the-docs:
+  logo: "/assets/img/logo.png" # If you want a logo in the sidebar
+  search_enabled: true # Enables search functionality
+  show_sidebar: true # Show the sidebar on all pages
+  show_toc: true # Show Table of Contents for pages
+  collections:
+    docs:
+      output: true
+      permalink: /:collection/:path/
+  nav_order: 1
+  nav: # Define the navigation structure for the sidebar
+    - title: "Getting Started"
+      url: /
+      items:
+        - title: "Introduction"
+          url: /docs/introduction/
+        - title: "API Reference"
+          url: /docs/api-reference/
+        - title: "Guide"
+          url: /docs/guide/
