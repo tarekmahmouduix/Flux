@@ -1,3 +1,5 @@
+baseurl: "/Flux"  # Use the subpath of your repo
+url: "https://tarekmahmoudiux.github.io"  # Don't include the trailing slash
 title: Just the Docs Template
 description: A starter template for a Jeykll site using the Just the Docs theme!
 remote_theme: pmarsceill/just-the-docs
