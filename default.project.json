@@ -12,7 +12,10 @@
         "$className": "Folder",
         "$path": "src/Flux/core"
       },
-
+      "docs": {
+        "$className": "Folder",
+        "$path": "docs"
+      },
       "framework": {
         "$className": "Folder",
         "$path": "src/Flux/framework"
