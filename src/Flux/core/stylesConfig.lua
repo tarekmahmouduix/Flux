@@ -1,156 +1,245 @@
+--@ Note:
+-- This configuration script defines utility functions and classes for styling GUI elements.
+--
+--@ To extend or customize the available utilities, modify this configuration script:
+-- - Add new utility functions and classes as needed.
+-- - Ensure they follow the existing naming and functional patterns.
+--
+--@ Example:
+-- For adding a new size utility, define a function under the 'size' table.
+-- For adding a new text color, define a function under the 'text' table.
+--
+-- Refer to existing utilities for structure and syntax.
+
+
 local config = {
-    s = {
-        ["s-1"] = function(guiElement)
-            print("[" .. tostring(guiElement) .. "]" .. "triggered scale")
-            guiElement.Size = UDim2.new(1, 0, 1, 0)
+    size = {
+
+        --# size -> [Utility-Function]
+        ["s-sm"] = function(guiElement : GuiObject)
+            guiElement.Size = UDim2.new(0, 100, 0, 50)
+        end,
+        ["s-md"] = function(guiElement : GuiObject)
+            guiElement.Size = UDim2.new(0, 200, 0, 100)
+        end,
+        ["s-lg"] = function(guiElement : GuiObject)
+            guiElement.Size = UDim2.new(0, 300, 0, 150)
         end,
     },
+
+    --##PADDING
     padding = {
-        ["p-1"] = function(guiElement : GuiObject)
+
+        --# pt,pb,pr,pl -> [Utility-Function]
+        ["pt-1"] = function(guiElement : GuiObject)
             if not guiElement:FindFirstChild("UIPadding") then
-                local newInstance = Instance.new("UIPadding", guiElement)
+                Instance.new("UIPadding", guiElement)
             end
-            guiElement.Padding = UDim.new(0, 1)
+            guiElement.UIPadding.PaddingTop = UDim.new(0.3, 0)
+        end,
+        ["pt-2"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingTop = UDim.new(0.6, 0)
+        end,
+        ["pb-1"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingBottom = UDim.new(0.3, 0)
+        end,
+        ["pb-2"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingBottom = UDim.new(0.6, 0)
+        end,
+        ["pr-1"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingRight = UDim.new(0.3, 0)
+        end,
+        ["pr-2"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingRight = UDim.new(0.6, 0)
+        end,
+        ["pl-1"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingLeft = UDim.new(0.3, 0)
+        end,
+        ["pl-2"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UIPadding") then
+                Instance.new("UIPadding", guiElement)
+            end
+            guiElement.UIPadding.PaddingLeft = UDim.new(0.6, 0)
         end,
     },
+
+    --##ASPECT-RATIO
+    aspectRatio = {
+
+        --# aspectRatio -> [Utility-Function]
+        ["aspect-16-9"] = function(guiElement : GuiObject)
+            local aspectConstraint = Instance.new("UIAspectRatioConstraint", guiElement)
+            aspectConstraint.AspectRatio = 16 / 9
+        end,
+        ["aspect-4-3"] = function(guiElement : GuiObject)
+            local aspectConstraint = Instance.new("UIAspectRatioConstraint", guiElement)
+            aspectConstraint.AspectRatio = 4 / 3
+        end,
+        ["aspect-1-1"] = function(guiElement : GuiObject)
+            local aspectConstraint = Instance.new("UIAspectRatioConstraint", guiElement)
+            aspectConstraint.AspectRatio = 1
+        end
+    },
+
+    --##ROUND/UICORNER
     round = {
+
+        --# round -> [Utility-Function]
+        ["round-xs"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UICorner") then
+                Instance.new("UICorner", guiElement)
+            end
+            guiElement.UICorner.CornerRadius = UDim.new(0, 2)
+        end,
         ["round-sm"] = function(guiElement : GuiObject)
             if not guiElement:FindFirstChild("UICorner") then
-                local newInstance = Instance.new("UICorner", guiElement)
+                Instance.new("UICorner", guiElement)
             end
             guiElement.UICorner.CornerRadius = UDim.new(0, 5)
         end,
         ["round-md"] = function(guiElement : GuiObject)
             if not guiElement:FindFirstChild("UICorner") then
-                local newInstance = Instance.new("UICorner", guiElement)
+                Instance.new("UICorner", guiElement)
             end
             guiElement.UICorner.CornerRadius = UDim.new(0, 10)
         end,
         ["round-lg"] = function(guiElement : GuiObject)
             if not guiElement:FindFirstChild("UICorner") then
-                local newInstance = Instance.new("UICorner", guiElement)
+                Instance.new("UICorner", guiElement)
             end
             guiElement.UICorner.CornerRadius = UDim.new(0, 15)
         end,
+        ["round-xl"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UICorner") then
+                Instance.new("UICorner", guiElement)
+            end
+            guiElement.UICorner.CornerRadius = UDim.new(0, 20)
+        end,
+        ["round-2xl"] = function(guiElement : GuiObject)
+            if not guiElement:FindFirstChild("UICorner") then
+                Instance.new("UICorner", guiElement)
+            end
+            guiElement.UICorner.CornerRadius = UDim.new(0, 30)
+        end,
     },
+
+    --##VISIBLE
+    visible = {
+
+        --# visible -> [Utility-Function]
+        ["hidden"] = function(guiElement : GuiObject)
+            guiElement.Visible = false
+        end
+    },
+
     border = {
+
+        --# border -> [Utility-Class]
         ["border"] = function(guiElement : GuiObject)
             guiElement.BorderSizePixel = 1
         end,
         ["border-none"] = function(guiElement : GuiObject)
             guiElement.BorderSizePixel = 0
         end,
-    },
-    visible = {
-        ["hidden"] = function(guiElement : GuiObject)
-            guiElement.Visible = false
-        end
-    },
-    borderColors = {
+
+        --# borderColor -> [Utility-Function]
         ["border-gray-50"] = function(guiElement : GuiObject)
             guiElement.BorderColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
         end,
-        ["border-gray-100"] = function(guiElement)
+        ["border-gray-100"] = function(guiElement : GuiObject)
             guiElement.BorderColor3 = Color3.fromRGB(243, 244, 246)  -- #F3F4F6
         end,
-        ["border-gray-500"] = function(guiElement)
+        ["border-gray-500"] = function(guiElement : GuiObject)
             guiElement.BorderColor3 = Color3.fromRGB(107, 114, 128)  -- #6B7280
         end,
-        ["border-red-500"] = function(guiElement)
+        ["border-red-500"] = function(guiElement : GuiObject)
             guiElement.BorderColor3 = Color3.fromRGB(239, 68, 68)  -- #EF4444
         end,
-        ["border-blue-500"] = function(guiElement)
+        ["border-blue-500"] = function(guiElement : GuiObject)
             guiElement.BorderColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
         end,
     },
-    position = {
-        ["po-0.5"] = function(guiElement)
-            print("used")
+
+    --##POSITION
+    pos = {
+
+        --# position -> [Utility-Function]
+        ["po-0.5"] = function(guiElement : GuiObject)
             guiElement.Position = UDim2.new(0.5, 0, 0.5, 0)
+            guiElement.AnchorPoint = Vector2.new(0.5, 0.5)
         end,
     },
-    text = {
-        ["text-gray-50"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
+
+    --##ZIndex
+    zindex = {
+
+        --# zindex -> [Utility-Class]
+        ["z-0"] = function(guiElement : GuiObject)
+            guiElement.ZIndex = 0
         end,
-        ["text-gray-100"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(243, 244, 246)  -- #F3F4F6
+        ["z-10"] = function(guiElement : GuiObject)
+            guiElement.ZIndex = 10
         end,
-        ["text-gray-500"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(107, 114, 128)  -- #6B7280
+        ["z-20"] = function(guiElement : GuiObject)
+            guiElement.ZIndex = 20
         end,
-        ["text-red-500"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(239, 68, 68)  -- #EF4444
+        ["z-50"] = function(guiElement : GuiObject)
+            guiElement.ZIndex = 50
         end,
-        ["text-blue-500"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
+        ["z-auto"] = function(guiElement : GuiObject)
+            guiElement.ZIndex = 1 -- default value
+        end,
+    },
+
+    --##ALIGN
+    align = {
+
+        --# alignObject -> [Utility-Function]
+        ["align-center"] = function(guiElement : GuiObject)
+            guiElement.Position = UDim2.new(0.5, 0, 0.5, 0)
+            guiElement.AnchorPoint = Vector2.new(0.5, 0.5)
         end,
 
-        ["text-xs"] = function(guiElement)
-            guiElement.TextSize = 12
-         end,
-         ["text-sm"] = function(guiElement)
-             guiElement.TextSize = 14
-         end,
-         ["text-base"] = function(guiElement)
-             guiElement.TextSize = 16
-          end,
-         ["text-lg"] = function(guiElement)
-              guiElement.TextSize = 18
-          end,
-          ["text-xl"] = function(guiElement)
-             guiElement.TextSize = 20
-          end,
-         ["text-2xl"] = function(guiElement)
-              guiElement.TextSize = 24
-          end,
-          ["text-3xl"] = function(guiElement)
-             guiElement.TextSize = 30
-          end,
-         ["text-4xl"] = function(guiElement)
-              guiElement.TextSize = 36
-          end,
-          ["text-5xl"] = function(guiElement)
-             guiElement.TextSize = 48
-          end,
-         ["text-6xl"] = function(guiElement)
-              guiElement.TextSize = 60
-          end,
-          ["text-7xl"] = function(guiElement)
-             guiElement.TextSize = 72
-          end,
-         ["text-8xl"] = function(guiElement)
-              guiElement.TextSize = 96
-          end,
-         ["text-9xl"] = function(guiElement)
-              guiElement.TextSize = 128
-          end,
-    },
-    bg = {
-        ["bg-gray-50"] = function(guiElement)
-            guiElement.BackgroundColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
+        -- Top-Left Alignment
+        ["align-top-left"] = function(guiElement : GuiObject)
+            guiElement.Position = UDim2.new(0, 0, 0, 0)
+            guiElement.AnchorPoint = Vector2.new(0, 0)
         end,
-        ["bg-red-500"] = function(guiElement)
-            guiElement.BackgroundColor3 = Color3.fromRGB(239, 68, 68)  -- #EF4444
+
+        -- Top-Right Alignment
+        ["align-top-right"] = function(guiElement : GuiObject)
+            guiElement.Position = UDim2.new(1, 0, 0, 0)
+            guiElement.AnchorPoint = Vector2.new(1, 0)
         end,
-        ["bg-blue-500"] = function(guiElement)
-            guiElement.BackgroundColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
+
+        -- Bottom-Left Alignment
+        ["align-bottom-left"] = function(guiElement : GuiObject)
+            guiElement.Position = UDim2.new(0, 0, 1, 0)
+            guiElement.AnchorPoint = Vector2.new(0, 1)
         end,
-    },
-    transparency = {
-        ["bgtrans-1"] = function(guiElement : GuiObject)
-            guiElement.BackgroundTransparency = 1
+
+        -- Bottom-Right Alignment
+        ["align-bottom-right"] = function(guiElement : GuiObject)
+            guiElement.Position = UDim2.new(1, 0, 1, 0)
+            guiElement.AnchorPoint = Vector2.new(1, 1)
         end,
-        ["bgtrans-0"] = function(guiElement : GuiObject)
-            guiElement.BackgroundTransparency = 0
-        end,
-        ["texttrans-1"] = function(guiElement : GuiObject)
-            guiElement.TextTransparency = 1
-        end,
-        ["texttrans-0"] = function(guiElement : GuiObject)
-            guiElement.TextTransparency = 0
-        end,
-    },
+    }
 }
-
-return config

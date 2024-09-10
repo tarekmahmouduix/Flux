@@ -8,7 +8,7 @@ local propertyMappings = {
     pos = { x = "Position", y = "Position" },
     bg = { color = "BackgroundColor3" },
     textColor = { color = "TextColor3" },
-    b = { color = "BorderColor3" }
+    border = { color = "BorderColor3" }
 }
 
 local function applySizeOrPosition(guiElement, category, property, value, unit, isSize)
@@ -50,7 +50,7 @@ end
 local function applyProperty(guiElement, category, property, value, unit)
     if category == "s" or category == "pos" then
         applySizeOrPosition(guiElement, category, property, value, unit, category == "s")
-    elseif category == "b" then
+    elseif category == "border" then
         guiElement.BorderSizePixel = tonumber(value)
     elseif category == "bg" then
         if property == "opacity" then
@@ -147,6 +147,12 @@ patternsModule.patterns = {
         end
     },
     {
+        pattern = "^(%w+:)(%w+)%-%[(%d)]",
+        handler = function(guiElement, pseudoClass, category, property, value, unit)
+            handlePseudoClass(guiElement, pseudoClass, category, property, value, unit)
+        end
+    },
+    {
         pattern = "^(%w+:)(%w+)%-(%w+)$",
         handler = function(guiElement, pseudoClass, category, value)
             local handler = config[category]
@@ -158,42 +164,57 @@ patternsModule.patterns = {
         end
     },
     {
-        pattern = "^(%w+:)(%w+)%-%[(%d+),(%d+),(%d+)%]$",
-        handler = function(guiElement, pseudoClass, category, r, g, b)
-            local color = Color3.fromRGB(tonumber(r), tonumber(g), tonumber(b))
-            local property = propertyMappings[category] and propertyMappings[category].color
-            if not property then
-                warn("Invalid category for color:", category)
-                return
-            end
-
-            local applyColor = function()
-                if property == "BackgroundColor3" then
-                    guiElement.BackgroundColor3 = color
-                elseif property == "TextColor3" then
-                    guiElement.TextColor3 = color
-                elseif property == "BorderColor3" then
-                    guiElement.BorderColor3 = color
+        pattern = "^(%w+:)(%w+)%-%[(%d*%.?%d+)(px*)%]$",
+        handler = function(guiElement, pseudoClass, category, value, unit)
+            local function applyOnEvent(event)
+                if pseudoClass == "hover:" then
+                    local current
+                    if category == "border" then
+                        current = guiElement.BorderSizePixel
+                    end
+    
+                    guiElement.MouseEnter:Connect(function()
+                        applyProperty(guiElement, category, pseudoClass, value, unit)
+                    end)
+                    guiElement.MouseLeave:Connect(function()
+                        if category == "border" then
+                            guiElement.BorderSizePixel = current
+                        end
+                    end)
+                elseif pseudoClass == "focus:" then
+                    local current
+                    if category == "border" then
+                        current = guiElement.BorderSizePixel
+                    end
+    
+                    guiElement.Focused:Connect(function()
+                        applyProperty(guiElement, category, pseudoClass, value, unit)
+                    end)
+                    guiElement.FocusLost:Connect(function()
+                        if category == "border" then
+                            guiElement.BorderSizePixel = current
+                        end
+                    end)
                 end
             end
-
-            if pseudoClass == "hover:" then
-                local originalColor = guiElement[property]
-                guiElement.MouseEnter:Connect(function()
-                    applyColor()
-                end)
-                guiElement.MouseLeave:Connect(function()
-                    guiElement[property] = originalColor
-                end)
-            else
-                applyColor()
+            
+            applyOnEvent(pseudoClass)
+        end
+    },
+    {
+        pattern = "^(%w+)%-(%w+)%-%[(%d*%.?%d+)([%a%%]*)%]$",
+        handler = function(guiElement, category, property, value, unit)
+            if category == "bg" and property == "opacity" and unit == "%" then
+                guiElement.BackgroundTransparency = value / 100
+            elseif category == "text" and property == "opacity" and unit == "%" then
+                guiElement.TextTransparency = value / 100
             end
         end
     },
     {
         pattern = "^(%w+)%-%[(%d*%.?%d+)([px]*)%]$",
         handler = function(guiElement, category, value, unit)
-            if category == "b" then
+            if category == "border" then
                 guiElement.BorderSizePixel = tonumber(value)
             else
                 warn("Unsupported category for BorderSizePixel:", category)
@@ -202,7 +223,7 @@ patternsModule.patterns = {
     },
     {
         pattern = "^(%w+)$",
-        handler = function(guiElement, category, value, unit)
+        handler = function(guiElement, category)
             local key = category
             local styleFunction = config[category] and config[category][key]
             if styleFunction then
@@ -212,6 +233,53 @@ patternsModule.patterns = {
             end
         end
     },
+   --[[     {
+        pattern = "^(%w+)%-(%d+)",
+        handler = function(guiElement, category, value)
+            local realcateg
+            if category == "pt" or "pb" or "pr" or "pl" then
+                realcateg = "p"
+            end
+            local key = category .. "-" .. value
+            local styleFunction = config[category] and config[category][key]
+            if styleFunction then
+                styleFunction(guiElement)
+            else
+                warn("No predefined style found for key/property:", key)
+            end
+        end
+    },--]]
+    {
+        pattern = "^(%w+)-(%w+)$",
+        handler = function(guiElement, category, value)
+            local realcat
+            local key = category .. "-" .. value
+    
+            -- Map categories to real categories
+            if category == "pt" or category == "pb" or category == "pr" or category == "pl" then
+                realcat = "padding"
+            elseif category == "s" then
+                realcat = "size"
+            elseif category == "z" then
+                realcat = "zindex"
+            else
+                warn("Unknown category:", category)
+                return
+            end
+    
+            print(category, key)
+    
+            -- Retrieve and apply the style function
+            local styleFunction = config[realcat] and config[realcat][key]
+            if styleFunction then
+                styleFunction(guiElement)
+            else
+                warn("No predefined style found for key/property:", key)
+            end
+        end
+    },
+    
+
     {
         pattern = "^(%w+)%-%[(%d*%.?%d+)([%.%%]*)%]$",
         handler = function(guiElement, category, value, unit)
@@ -227,6 +295,13 @@ patternsModule.patterns = {
         pattern = "^(%w+)%-(%w+)%-(%w+)$",
         handler = function(guiElement, category, property, value)
             local key = category .. "-" .. property .. "-" .. value
+
+            if category == "aspect" then
+                category = "aspectRatio"
+            elseif category == "bg" then
+                category = "background"
+            end
+
             local styleFunction = config[category] and config[category][key]
             if styleFunction then
                 styleFunction(guiElement)
@@ -236,19 +311,7 @@ patternsModule.patterns = {
         end
     },
     {
-        pattern = "^(%w+)%-(%w+)$",
-        handler = function(guiElement, category, property)
-            local key = category .. "-" .. property
-            local styleFunction = config[category] and config[category][key]
-            if styleFunction then
-                styleFunction(guiElement)
-            else
-                warn("No predefined style found for key/property:", key)
-            end
-        end
-    },
-    {
-        pattern = "^(%w+)%-(%d+)",
+        pattern = "^(%w+)%-([%w%-]+)$",
         handler = function(guiElement, category, value)
             local key = category .. "-" .. value
             local styleFunction = config[category] and config[category][key]
@@ -259,13 +322,28 @@ patternsModule.patterns = {
             end
         end
     },
+    
+    {
+        pattern = "^(%w+)%-(%w+)$",
+        handler = function(guiElement, category, property)
+            print(category, property)
+            local key = category .. "-" .. property
+            local styleFunction = config[category] and config[category][key]
+            if styleFunction then
+                styleFunction(guiElement)
+            else
+                warn("No predefined style found for key/property:", key)
+            end
+        end
+    },
+
     {
         pattern = "^(%w+)%-%[(%d+),(%d+),(%d+)%]$",
         handler = function(guiElement, colorCategory, r, g, b)
             local color = Color3.fromRGB(tonumber(r), tonumber(g), tonumber(b))
             if colorCategory == "bg" then
                 guiElement.BackgroundColor3 = color
-            elseif colorCategory == "textColor" then
+            elseif colorCategory == "text" then
                 guiElement.TextColor3 = color
             else
                 warn("Unsupported color category:", colorCategory)
