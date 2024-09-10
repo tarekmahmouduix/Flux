@@ -23,7 +23,3 @@ just-the-docs:
       items:
         - title: "Introduction"
           url: /docs/introduction/
-        - title: "API Reference"
-          url: /docs/api-reference/
-        - title: "Guide"
-          url: /docs/guide/
