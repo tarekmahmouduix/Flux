@@ -1,0 +1,4 @@
+title: "My Documentation"
+description: "API Documentation for My Framework"
+theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
