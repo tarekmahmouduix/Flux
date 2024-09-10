@@ -17,15 +17,7 @@ local styleHandlers = {
             guiElement.Padding = UDim.new(0, value)
         end
     end,
-    ["po"] = function(guiElement, value, unit)
-        if unit == "sc" then
-            -- Handle scale units for position
-            guiElement.Position = UDim2.new(value, 0, value, 0)
-        elseif unit == "off" then
-            -- Handle offset units for position
-            guiElement.Position = UDim2.new(0, value, 0, value)
-        end
-    end,
+
     ["bg"] = function(guiElement : GuiObject, value, unit)
         local r, g, b = value:match("(%d+),(%d+),(%d+)")
         if r and g and b then
@@ -78,7 +70,6 @@ function applyUnit(guiElement, value, unit, axis, property)
             guiElement[property] = UDim2.new(guiElement[property].X.Scale, value, guiElement[property].Y.Scale, value)
         end
     elseif unit == "%" then
-        print("scaled by: " .. value / 100 .. "%")
         if axis == "x" then
             guiElement[property] = UDim2.new(value / 100, guiElement[property].X.Offset, guiElement[property].Y.Scale, guiElement[property].Y.Offset)
         elseif axis == "y" then

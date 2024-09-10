@@ -4,14 +4,23 @@
     "$className": "DataModel",
 
     "ReplicatedStorage": {
+      "flux": {
+        "$className": "Folder",
+        "$path": "src/Flux"
+      },
       "core": {
         "$className": "Folder",
-        "$path": "src/core"
+        "$path": "src/Flux/core"
+      },
+
+      "framework": {
+        "$className": "Folder",
+        "$path": "src/Flux/framework"
       },
 
       "plugins": {
         "$className": "Folder",
-        "$path": "src/plugins"
+        "$path": "src/Flux/plugins"
       },
 
       "tests": {

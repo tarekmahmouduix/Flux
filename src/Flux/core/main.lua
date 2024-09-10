@@ -1,7 +1,9 @@
--- style__apply.lua
-local patternsModule = require(script.Parent.config.patterns)  -- Adjust the path as needed
+local init = require(script.Parent.Parent.launch)
+local patternsModule = require(script.Parent.config.patterns)
 
 local style__apply = {}
+
+init.init()
 
 -- Apply static styles
 function applyStaticStyles(guiElement, className)
@@ -19,16 +21,12 @@ end
 -- Main function to apply styles
 function style__apply.applyStyles(guiElement, className)
     local classes = string.split(className, " ")
-    print(classes)
     for _, class in ipairs(classes) do
-        print(class)
             local matched = false
             for _, entry in ipairs(patternsModule.patterns) do
                 local matches = {class:match(entry.pattern)}
-                print(matches)
                 if #matches > 0 then
                     entry.handler(guiElement, table.unpack(matches))
-                    print( entry.handler(guiElement, table.unpack(matches)))
                     matched = true
                     break
                 end

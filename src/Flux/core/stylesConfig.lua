@@ -1,5 +1,5 @@
 local config = {
-    size = {
+    s = {
         ["s-1"] = function(guiElement)
             print("[" .. tostring(guiElement) .. "]" .. "triggered scale")
             guiElement.Size = UDim2.new(1, 0, 1, 0)
@@ -69,7 +69,7 @@ local config = {
             guiElement.Position = UDim2.new(0.5, 0, 0.5, 0)
         end,
     },
-    textColors = {
+    text = {
         ["text-gray-50"] = function(guiElement)
             guiElement.TextColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
         end,
@@ -85,6 +85,46 @@ local config = {
         ["text-blue-500"] = function(guiElement)
             guiElement.TextColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
         end,
+
+        ["text-xs"] = function(guiElement)
+            guiElement.TextSize = 12
+         end,
+         ["text-sm"] = function(guiElement)
+             guiElement.TextSize = 14
+         end,
+         ["text-base"] = function(guiElement)
+             guiElement.TextSize = 16
+          end,
+         ["text-lg"] = function(guiElement)
+              guiElement.TextSize = 18
+          end,
+          ["text-xl"] = function(guiElement)
+             guiElement.TextSize = 20
+          end,
+         ["text-2xl"] = function(guiElement)
+              guiElement.TextSize = 24
+          end,
+          ["text-3xl"] = function(guiElement)
+             guiElement.TextSize = 30
+          end,
+         ["text-4xl"] = function(guiElement)
+              guiElement.TextSize = 36
+          end,
+          ["text-5xl"] = function(guiElement)
+             guiElement.TextSize = 48
+          end,
+         ["text-6xl"] = function(guiElement)
+              guiElement.TextSize = 60
+          end,
+          ["text-7xl"] = function(guiElement)
+             guiElement.TextSize = 72
+          end,
+         ["text-8xl"] = function(guiElement)
+              guiElement.TextSize = 96
+          end,
+         ["text-9xl"] = function(guiElement)
+              guiElement.TextSize = 128
+          end,
     },
     bg = {
         ["bg-gray-50"] = function(guiElement)
