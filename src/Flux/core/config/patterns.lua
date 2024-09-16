@@ -216,12 +216,14 @@ patternsModule.patterns = {
     {
         pattern = "^(%w+)$",
         handler = function(guiElement, category)
-            if category == "transition" then
-                print("transition")
-
+            local rc
+            if category == "hidden" then
+                rc = "visible"
+            else
+                rc = category
             end
             local key = category
-            local styleFunction = config[category] and config[category][key]
+            local styleFunction = config[rc] and config[rc][key]
             if styleFunction then
                 styleFunction(guiElement)
             else
@@ -254,6 +256,9 @@ patternsModule.patterns = {
             if category == "bg" then
                 category = "background"
                 rc = "bg"
+            elseif category == "aspect" then
+                category = "aspectRatio"
+                rc = "aspect"
             end
             local key = rc .. "-" .. property .. "-" .. value
             local styleFunction = config[category] and config[category][key]
@@ -271,7 +276,7 @@ patternsModule.patterns = {
             local rc
             if category == "s" then
                 category = "size"
-                rc = "s"
+                rc = "size"
             elseif category == "text" then
                 category = "text"
                 rc = "text"
@@ -280,7 +285,7 @@ patternsModule.patterns = {
             end
             local key = rc .. "-" .. property
             print(key, category)
-            local styleFunction = config[category] and config[category][key]
+            local styleFunction = config[category] and config[rc][key]
             if styleFunction then
                 styleFunction(guiElement)
             else

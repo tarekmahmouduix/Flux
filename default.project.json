@@ -12,15 +12,10 @@
         "$className": "Folder",
         "$path": "src/Flux/core"
       },
-      "docs": {
-        "$className": "Folder",
-        "$path": "docs"
-      },
       "framework": {
         "$className": "Folder",
         "$path": "src/Flux/framework"
       },
-
       "plugins": {
         "$className": "Folder",
         "$path": "src/Flux/plugins"
@@ -34,7 +29,7 @@
     "StarterGui": {
       "client": {
         "$className": "Folder",
-        "$path": "src/client"
+        "$path": "client"
       }
     }
   }

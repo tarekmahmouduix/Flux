@@ -237,25 +237,101 @@ local config = {
     --##TEXT-COLORS/TEXT-SIZE/TEXT-ALIGN/TEXT-OPACITY
     text = {
 
-        --# textColor -> [Utility-Class]
-        ["text-gray-50"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
-        end,
-        ["text-white"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(255, 255, 255)  -- #F9FAFB
-        end,
-        ["text-gray-100"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(243, 244, 246)  -- #F3F4F6
-        end,
-        ["text-gray-500"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(107, 114, 128)  -- #6B7280
-        end,
-        ["text-red-500"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(239, 68, 68)  -- #EF4444
-        end,
-        ["text-blue-500"] = function(guiElement)
-            guiElement.TextColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
-        end,
+    -- Grays
+    ["text-gray-50"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
+    end,
+    ["text-gray-100"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(243, 244, 246)  -- #F3F4F6
+    end,
+    ["text-gray-200"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(229, 231, 235)  -- #E5E7EB
+    end,
+    ["text-gray-300"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(209, 213, 219)  -- #D1D5DB
+    end,
+    ["text-gray-400"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(156, 163, 175)  -- #9CA3AF
+    end,
+    ["text-gray-500"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(107, 114, 128)  -- #6B7280
+    end,
+    ["text-gray-600"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(75, 85, 99)     -- #4B5563
+    end,
+    ["text-gray-700"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(55, 65, 81)     -- #374151
+    end,
+    ["text-gray-800"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(31, 41, 55)     -- #1F2937
+    end,
+    ["text-gray-900"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(17, 24, 39)     -- #111827
+    end,
+
+    -- Reds
+    ["text-red-50"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(254, 242, 242)  -- #FEF2F2
+    end,
+    ["text-red-100"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(254, 226, 226)  -- #FEE2E2
+    end,
+    ["text-red-200"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(254, 202, 202)  -- #FECACA
+    end,
+    ["text-red-300"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(252, 165, 165)  -- #FCA5A5
+    end,
+    ["text-red-400"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(248, 113, 113)  -- #F87171
+    end,
+    ["text-red-500"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(239, 68, 68)    -- #EF4444
+    end,
+    ["text-red-600"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(220, 38, 38)    -- #DC2626
+    end,
+    ["text-red-700"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(185, 28, 28)    -- #B91C1C
+    end,
+    ["text-red-800"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(153, 27, 27)    -- #991B1B
+    end,
+    ["text-red-900"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(127, 29, 29)    -- #7F1D1D
+    end,
+
+    -- Blues
+    ["text-blue-50"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(239, 246, 255)  -- #EFF6FF
+    end,
+    ["text-blue-100"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(219, 234, 254)  -- #DBEAFE
+    end,
+    ["text-blue-200"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(191, 219, 254)  -- #BFDBFE
+    end,
+    ["text-blue-300"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(147, 197, 253)  -- #93C5FD
+    end,
+    ["text-blue-400"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(96, 165, 250)   -- #60A5FA
+    end,
+    ["text-blue-500"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(59, 130, 246)   -- #3B82F6
+    end,
+    ["text-blue-600"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(37, 99, 235)    -- #2563EB
+    end,
+    ["text-blue-700"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(29, 78, 216)    -- #1D4ED8
+    end,
+    ["text-blue-800"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(30, 64, 175)    -- #1E40AF
+    end,
+    ["text-blue-900"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(30, 58, 138)    -- #1E3A8A
+    end,
 
 
         --# textSize -> [Utility-Class]
@@ -375,16 +451,101 @@ local config = {
     --##BACKGROUND-COLORS/BACKGROUND-GRADIENTS/BACKGROUND-OPACITY
     background = {
 
-        --# backgroundColors -> [Utility-Class]
-        ["bg-gray-50"] = function(guiElement)
-            guiElement.BackgroundColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
-        end,
-        ["bg-red-500"] = function(guiElement)
-            guiElement.BackgroundColor3 = Color3.fromRGB(239, 68, 68)  -- #EF4444
-        end,
-        ["bg-blue-500"] = function(guiElement)
-            guiElement.BackgroundColor3 = Color3.fromRGB(59, 130, 246)  -- #3B82F6
-        end,
+    -- Grays
+    ["bg-gray-50"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(249, 250, 251)  -- #F9FAFB
+    end,
+    ["bg-gray-100"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(243, 244, 246)  -- #F3F4F6
+    end,
+    ["bg-gray-200"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(229, 231, 235)  -- #E5E7EB
+    end,
+    ["bg-gray-300"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(209, 213, 219)  -- #D1D5DB
+    end,
+    ["bg-gray-400"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(156, 163, 175)  -- #9CA3AF
+    end,
+    ["bg-gray-500"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(107, 114, 128)  -- #6B7280
+    end,
+    ["bg-gray-600"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(75, 85, 99)     -- #4B5563
+    end,
+    ["bg-gray-700"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(55, 65, 81)     -- #374151
+    end,
+    ["bg-gray-800"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(31, 41, 55)     -- #1F2937
+    end,
+    ["bg-gray-900"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(17, 24, 39)     -- #111827
+    end,
+
+    -- Reds
+    ["bg-red-50"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(254, 242, 242)  -- #FEF2F2
+    end,
+    ["bg-red-100"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(254, 226, 226)  -- #FEE2E2
+    end,
+    ["bg-red-200"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(254, 202, 202)  -- #FECACA
+    end,
+    ["bg-red-300"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(252, 165, 165)  -- #FCA5A5
+    end,
+    ["bg-red-400"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(248, 113, 113)  -- #F87171
+    end,
+    ["bg-red-500"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(239, 68, 68)    -- #EF4444
+    end,
+    ["bg-red-600"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(220, 38, 38)    -- #DC2626
+    end,
+    ["bg-red-700"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(185, 28, 28)    -- #B91C1C
+    end,
+    ["bg-red-800"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(153, 27, 27)    -- #991B1B
+    end,
+    ["bg-red-900"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(127, 29, 29)    -- #7F1D1D
+    end,
+
+    -- Blues
+    ["bg-blue-50"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(239, 246, 255)  -- #EFF6FF
+    end,
+    ["bg-blue-100"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(219, 234, 254)  -- #DBEAFE
+    end,
+    ["bg-blue-200"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(191, 219, 254)  -- #BFDBFE
+    end,
+    ["bg-blue-300"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(147, 197, 253)  -- #93C5FD
+    end,
+    ["bg-blue-400"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(96, 165, 250)   -- #60A5FA
+    end,
+    ["bg-blue-500"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(59, 130, 246)   -- #3B82F6
+    end,
+    ["bg-blue-600"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(37, 99, 235)    -- #2563EB
+    end,
+    ["bg-blue-700"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(29, 78, 216)    -- #1D4ED8
+    end,
+    ["bg-blue-800"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(30, 64, 175)    -- #1E40AF
+    end,
+    ["bg-blue-900"] = function(guiElement)
+        guiElement.BackgroundColor3 = Color3.fromRGB(30, 58, 138)    -- #1E3A8A
+    end,
         
         --# gradients -> [Utility-Function]
         ["bg-gradient-blue"] = function(guiElement)

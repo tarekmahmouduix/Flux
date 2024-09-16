@@ -38,16 +38,13 @@ To start using the framework, follow these steps:
 2. **Example**:
 
    ```lua
-   local ui = require(game.ReplicatedStorage.TariqFramework)
+   local Flux = require(game.ReplicatedStorage.Flux)
 
    local myFrame = Instance.new("Frame")
    myFrame.Parent = script.Parent -- Replace with your UI element's parent
    
    -- Apply utilities
-   ui.apply(myFrame, {
-       "bg-color-white", -- Background color utility
-       "size-md",        -- Size utility
-   })
+   Flux.applyStyles(myFrame,"s-[30%] bg-red-500 rounded-md text-[255,255,255] font-bold") -- apply your utilities and classes instantly
    ```
 
 3. This will style your `Frame` with the specified utilities. The list of available utilities will expand as the framework evolves.
@@ -56,9 +53,19 @@ To start using the framework, follow these steps:
 
 Since this is an early prototype, the framework only supports a limited number of utilities. Some of the basic ones include:
 
-- **Background Colors**: `bg-color-white`, `bg-color-black`, etc.
-- **Size Utilities**: `size-sm`, `size-md`, `size-lg` for common UI sizes.
-- **Position Utilities**: `pos-center`, `pos-left`, etc.
+- **Background Colors**: `bg-red-500`, `bg-gray-50`, etc.
+- **Size Utilities**: `s-sm`, `s-md`, `s-lg`, `sx-[(number-here)]`, `sy-[(number-here)]`, `text-sm`, `text-xl` for common UI sizes.
+- **Special Classes(Pseudo)**: `hover:`, `focus:`
+- **Align**: `align-center`, `align-left`, `align-right`, etc.
+- **Font**: `font-(font-here)`, `font-bold`, `font-light`, `font-base`, etc.
+- **Round**: `round-xs`, `round-sm`, `round-lg`, `round-xl`, `round-2xl`
+- **aspectRatio**: `aspect-16-9`, `aspect-4-3`, `aspect-1-1`
+- **hidden**: `hidden`, (to hide objects)
+- **SpecialKeyword**: to animate a State of a object e.g(``hover:``) you can put (``-transition`` at the end of the state) e.g(``hover:bg-[255,255,255]-transition``)
+
+When using the class (Align) the gui becomes responsive
+
+//Special Class (focus:) might not work properly
 
 More utilities will be added over time. Feel free to suggest new utilities by opening an issue or contributing!
 
