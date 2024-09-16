@@ -20,14 +20,19 @@ Flux is a **utility-first** framework designed to simplify and accelerate the pr
 - [License](#license)
 
 ## Installation
+### Flux has no dependencies, meaning that you can install it in several ways. You can add it as a submodule, clone the repository, or download the latest ``.rbxm`` file to use in your project.
 
-1. Clone the repository to your Roblox project.
+## Option 1: Clone the Repository
+Clone the repository to your Roblox project.
 
    ```bash
-   git clone https://github.com/your-username/tariq-framework.git
+   git clone https://github.com/tarekmahmouduix/Flux
    ```
 
-2. Import the framework into your Roblox Studio project by placing the necessary files into the `ReplicatedStorage` or `StarterGui` (depending on your project setup).
+## Option 2: Donwloading the `.rbxm` file
+you can find the rbxm file in github downloads
+
+let me know if you'd like any further installation methods
 
 ## Usage
 
