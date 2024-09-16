@@ -1,14 +1,18 @@
+-- Unified Style Handler and Config
 local init = require(script.Parent.Parent.launch)
 local patternsModule = require(script.Parent.config.patterns)
+local index = require(script.Parent.Animations.index)
 
-local style__apply = {}
-
+-- Initialize the core functionality
 init.init()
 
+-- Table to store patterns (including user-defined)
+local registeredPatterns = patternsModule.patterns
+
 -- Apply static styles
-function applyStaticStyles(guiElement, className)
+local function applyStaticStyles(guiElement, className)
     for _, class in ipairs(string.split(className, " ")) do
-        for _, entry in ipairs(patternsModule.patterns) do
+        for _, entry in ipairs(registeredPatterns) do
             local matches = {class:match(entry.pattern)}
             if #matches > 0 then
                 entry.handler(guiElement, table.unpack(matches))
@@ -18,23 +22,40 @@ function applyStaticStyles(guiElement, className)
     end
 end
 
--- Main function to apply styles
-function style__apply.applyStyles(guiElement, className)
+-- Apply styles, matching against registered patterns
+local function applyStyles(guiElement, className)
     local classes = string.split(className, " ")
+
+    -- Loop through all classes provided by the user
     for _, class in ipairs(classes) do
-            local matched = false
-            for _, entry in ipairs(patternsModule.patterns) do
-                local matches = {class:match(entry.pattern)}
-                if #matches > 0 then
-                    entry.handler(guiElement, table.unpack(matches))
-                    matched = true
-                    break
-                end
+        local matched = false
+        -- Loop through patterns to find matches
+        for _, entry in ipairs(registeredPatterns) do
+            local matches = {class:match(entry.pattern)}
+            if #matches > 0 then
+                entry.handler(guiElement, table.unpack(matches))
+                matched = true
+                break
             end
-            if not matched then
-            print("No matching pattern found for: " .. class)
+        end
+        
+        if not matched then
+            if class == "" then
+                print("Cannot use Spaces as Classes")
+            else
+                print("No matching pattern found for: " .. class)
+            end
         end
     end
 end
 
-return style__apply
+-- Function for users to add their own patterns
+local function addUtility(pattern, handler)
+    table.insert(registeredPatterns, {pattern = pattern, handler = handler})
+end
+
+-- Return module with functionality
+return {
+    applyStyles = applyStyles,
+    addUtility = addUtility, -- Allow users to register their own utilities
+}

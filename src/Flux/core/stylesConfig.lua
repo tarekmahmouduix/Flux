@@ -260,7 +260,7 @@ local config = {
 
         --# textSize -> [Utility-Class]
         ["text-xs"] = function(guiElement)
-            guiElement.TextSize = 12
+            guiElement.TextSize = 8
          end,
          ["text-sm"] = function(guiElement)
              guiElement.TextSize = 14

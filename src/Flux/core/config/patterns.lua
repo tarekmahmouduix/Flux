@@ -2,6 +2,7 @@
 local patternsModule = {}
 local styleHandlers = require(script.Parent.Parent.StyleHandler)  -- Adjust the path as needed
 local config = require(script.Parent.Parent.stylesConfig)
+local index = require(script.Parent.Parent.Animations.index)
 
 local propertyMappings = {
     s = { x = "Size", y = "Size" },
@@ -13,14 +14,14 @@ local propertyMappings = {
 
 local function applySizeOrPosition(guiElement, category, property, value, unit, isSize)
     if isSize then
-        if property == "x" then
+        if category == "sx" then
             guiElement.Size = UDim2.new(
                 unit == "%" and value / 100 or value, 
                 guiElement.Size.X.Offset, 
                 guiElement.Size.Y.Scale, 
                 guiElement.Size.Y.Offset
             )
-        elseif property == "y" then
+        elseif category == "sy" then
             guiElement.Size = UDim2.new(
                 guiElement.Size.X.Scale, 
                 guiElement.Size.X.Offset, 
@@ -68,7 +69,7 @@ end
 local function handlePseudoClass(guiElement, pseudoClass, category, property, value, unit)
     local originalProperty
     if pseudoClass == "hover:" then
-        if category == "s" then
+        if category == "sx" then
             originalProperty = guiElement.Size
         elseif category == "pos" then
             originalProperty = guiElement.Position
@@ -141,6 +142,12 @@ end
 
 patternsModule.patterns = {
     {
+        pattern = "^(%w+:)(%w+)%-%[(%d+),(%d+),(%d+)%]%-transition$",
+        handler = function(guiElement, pseudoClass, category, v1, v2, v3)
+            index.transitionColor(guiElement, pseudoClass, category, v1, v2, v3)
+        end
+    },
+    {
         pattern = "^(%w+:)(%w+)%-(%w*)%-%[(%d*%.?%d+)([%a+%%]*)%]$",
         handler = function(guiElement, pseudoClass, category, property, value, unit)
             handlePseudoClass(guiElement, pseudoClass, category, property, value, unit)
@@ -191,6 +198,12 @@ patternsModule.patterns = {
         end
     },
     {
+        pattern = "^(%w+:)(%w+)%-%[(%d*%.?%d+)([%a+%%]*)%]$",
+        handler = function(guiElement, pseudoClass, category, v, unit)
+            handlePseudoClass(guiElement, pseudoClass, category, nil, v, unit)
+        end
+    },
+    {
         pattern = "^(%w+)%-%[(%d*%.?%d+)([px]*)%]$",
         handler = function(guiElement, category, value, unit)
             if category == "b" then
@@ -202,7 +215,11 @@ patternsModule.patterns = {
     },
     {
         pattern = "^(%w+)$",
-        handler = function(guiElement, category, value, unit)
+        handler = function(guiElement, category)
+            if category == "transition" then
+                print("transition")
+
+            end
             local key = category
             local styleFunction = config[category] and config[category][key]
             if styleFunction then
@@ -221,6 +238,12 @@ patternsModule.patterns = {
             else
                 warn("No handler found for category:", category)
             end
+        end
+    },
+    {
+        pattern = "^(%w+:)(%w)%-%[(%d*%.?%d+)([%.%%]*)%]$",
+        handler = function(guiElement, pseudoClass ,category, value, unit)
+            handlePseudoClass(guiElement, pseudoClass, category, "", value, unit)
         end
     },
     {
@@ -289,7 +312,7 @@ patternsModule.patterns = {
                 warn("Unsupported color category:", colorCategory)
             end
         end
-    }
+    },
 }
 
 return patternsModule
