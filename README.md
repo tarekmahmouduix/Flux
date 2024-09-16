@@ -36,14 +36,12 @@ let me know if you'd like any further installation methods
 
 ## Usage
 
-To start using the framework, follow these steps:
+to Start using flux, you can use the template down here or by requiring and using the built in function `applyStyles`
 
-1. Add the framework to your desired GUI element. For instance, if you want to apply background color and size utilities to a `Frame`, use the provided utility functions.
-
-2. **Example**:
+**Template**:
 
    ```lua
-   --simple app example
+   -- simple app example
 
    local engine = require(game.ReplicatedStorage.flux.core.main)
    local scGUI = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
