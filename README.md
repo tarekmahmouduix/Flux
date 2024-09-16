@@ -52,8 +52,6 @@ To start using the framework, follow these steps:
    newElement.Text = "Hello, Flux!"
 
    engine.applyStyles(newElement, "bg-gray-50 hover:bg-[30,30,30]-transition hover:text-[255,255,255]-transition sx-[30%] sy-[30%] align-center text-2xl font-arial font-bold round-md")
-
-   --classes instantly
    ```
 
 3. This will style your `Frame` with the specified utilities. The list of available utilities will expand as the framework evolves.
@@ -70,7 +68,7 @@ Since this is an early prototype, the framework only supports a limited number o
 - **Round**: `round-xs`, `round-sm`, `round-lg`, `round-xl`, `round-2xl`
 - **aspectRatio**: `aspect-16-9`, `aspect-4-3`, `aspect-1-1`
 - **hidden**: `hidden`, (to hide objects)
-- **SpecialKeyword**: to animate a State of a object e.g(``hover:``) you can put (``-transition`` at the end of the state) e.g(``hover:bg-[255,255,255]-transition``)
+- **SpecialKeywords**: to animate a State of a object e.g(``hover:``) you can put (``-transition`` at the end of the state) e.g(``hover:bg-[255,255,255]-transition``)
 
 When using the class (Align) the gui becomes responsive
 
