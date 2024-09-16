@@ -21,3 +21,19 @@ Flux is a **utility-first** framework designed to simplify and accelerate the pr
 ## Installation
 
 Download the **.rbxm** file to get started
+
+## Usage
+
+``lua
+local ui = require(game.ReplicatedStorage.TariqFramework)
+
+local myFrame = Instance.new("Frame")
+myFrame.Parent = script.Parent -- Replace with your UI element's parent
+
+-- Apply utilities
+ui.apply(myFrame, {
+    "bg-color-white", -- Background color utility
+    "size-md",        -- Size utility
+})
+
+``
