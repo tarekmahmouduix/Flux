@@ -294,7 +294,7 @@ patternsModule.patterns = {
         end
     },
     {
-        pattern = "^(%w+)%-(%d+)",
+        pattern = "^(%w+)%-(%d+)%",
         handler = function(guiElement, category, value)
             local key = category .. "-" .. value
             local styleFunction = config[category] and config[category][key]

@@ -1,13 +1,28 @@
-# Contributing to Flux
+# Contributing to Tariq's Framework
 
-Thank you for considering contributing to Tariq's Framework! Contributions of all types are welcome and appreciated. Please take a moment to review this guide before you get started.
+First of all, thank you for considering contributing to this project. Your help is greatly appreciated!
 
-## How to Contribute
+## Ways to Contribute
 
-1. **Fork the Repository**: Start by forking the repository to your own GitHub account.
+- Reporting bugs
+- Submitting feature requests
+- Improving documentation
+- Writing or refactoring code
 
-2. **Clone the Fork**: Clone your forked repository to your local machine.
+## Getting Started
 
-``bash
-  https://github.com/tarekmahmouduix/Flux
-``
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/my-feature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/my-feature`).
+5. Open a pull request.
+
+## Code Style Guidelines
+
+- Ensure your code is clean and readable.
+- Follow the project's established coding patterns.
+- Document any new functionality.
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.

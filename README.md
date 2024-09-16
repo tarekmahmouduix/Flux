@@ -1,7 +1,7 @@
 
-# Tariq's Roblox UI Framework
+# Flux
 
-Tariq's Framework is a **utility-first** framework designed to simplify and accelerate the process of building UI elements in Roblox. Inspired by utility-first CSS frameworks like Tailwind CSS, this framework provides a set of predefined utility classes to style your Roblox GUIs efficiently.
+Flux is a **utility-first** framework designed to simplify and accelerate the process of building UI elements in Roblox. Inspired by utility-first CSS frameworks like Tailwind CSS, this framework provides a set of predefined utility classes to style your Roblox GUIs efficiently.
 
 ⚠️ **Note:** This framework is in its prototype phase, with limited features. Stay tuned for more updates!
 
@@ -38,13 +38,17 @@ To start using the framework, follow these steps:
 2. **Example**:
 
    ```lua
-   local Flux = require(game.ReplicatedStorage.Flux)
+   --simple app example
 
-   local myFrame = Instance.new("Frame")
-   myFrame.Parent = script.Parent -- Replace with your UI element's parent
-   
-   -- Apply utilities
-   Flux.applyStyles(myFrame,"s-[30%] bg-red-500 rounded-md text-[255,255,255] font-bold") -- apply your utilities and classes instantly
+   local engine = require(game.ReplicatedStorage.flux.core.main)
+   local scGUI = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+
+   local newElement = Instance.new("TextLabel", scGUI)
+   newElement.Text = "Hello, Flux!"
+
+   engine.applyStyles(newElement, "bg-gray-50 hover:bg-[30,30,30]-transition hover:text-[255,255,255]-transition sx-[30%] sy-[30%] align-center text-2xl font-arial font-bold round-md")
+
+   --classes instantly
    ```
 
 3. This will style your `Frame` with the specified utilities. The list of available utilities will expand as the framework evolves.
@@ -57,7 +61,7 @@ Since this is an early prototype, the framework only supports a limited number o
 - **Size Utilities**: `s-sm`, `s-md`, `s-lg`, `sx-[(number-here)]`, `sy-[(number-here)]`, `text-sm`, `text-xl` for common UI sizes.
 - **Special Classes(Pseudo)**: `hover:`, `focus:`
 - **Align**: `align-center`, `align-left`, `align-right`, etc.
-- **Font**: `font-(font-here)`, `font-bold`, `font-light`, `font-base`, etc.
+- **Font**: `font-(font-here)`, `font-bold`, `font-light`, `font-base`, currently supporting about 20 fonts
 - **Round**: `round-xs`, `round-sm`, `round-lg`, `round-xl`, `round-2xl`
 - **aspectRatio**: `aspect-16-9`, `aspect-4-3`, `aspect-1-1`
 - **hidden**: `hidden`, (to hide objects)

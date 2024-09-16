@@ -420,8 +420,56 @@ local config = {
         ["font-roboto"] = function(guiElement : GuiObject)
             guiElement.Font = Enum.Font.Roboto
         end,
-        ["font-gotham"] = function(guiElement : GuiObject)
+        ["font-montserrat"] = function(guiElement : GuiObject)
             guiElement.Font = Enum.Font.Montserrat
+        end,
+        ["font-nunito"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Nunito
+        end,
+        ["font-josefinSans"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.JosefinSans
+        end,
+        ["font-luckiestGuy"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.LuckiestGuy
+        end,
+        ["font-grenzeGotisch"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.GrenzeGotisch
+        end,
+        ["font-indieFlower"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.IndieFlower
+        end,
+        ["font-denkOne"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.DenkOne
+        end,
+        ["font-fredokaOne"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.FredokaOne
+        end,
+        ["font-cartoony"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Cartoon
+        end,
+        ["font-codePro"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Code
+        end,
+        ["font-bangers"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Bangers
+        end,
+        ["font-highway"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Highway
+        end,
+        ["font-garamond"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Garamond
+        end,
+        ["font-sciFi"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.SciFi
+        end,
+        ["font-specialElite"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.SpecialElite
+        end,
+        ["font-ubuntu"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Ubuntu
+        end,
+        ["font-oswald"] = function(guiElement : GuiObject)
+            guiElement.Font = Enum.Font.Oswald
         end,
 
         --# fontWeight -> [Utility-Function]
