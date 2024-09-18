@@ -29,7 +29,7 @@ Clone the repository to your Roblox project.
    git clone https://github.com/tarekmahmouduix/Flux
    ```
 
-## Option 2: Donwloading the `.rbxm` file
+## Option 2: Downloading the `.rbxm` file
 you can find the rbxm file in github downloads
 
 let me know if you'd like any further installation methods
