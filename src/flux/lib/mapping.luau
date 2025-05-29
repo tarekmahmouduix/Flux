@@ -1,0 +1,30 @@
+-- @ This module provides a mapping of Flux properties to Roblox properties
+
+return {
+    bg = "BackgroundColor3",
+    textColor = "TextColor3",
+    text = "Text",
+    textSize = "TextSize",
+    font = "FontFamily",
+    list = "UIListLayout",
+    ha = "HorizontalAlignment",
+    va = "VerticalAlignment",
+    p = "Padding",
+    border = "Thickness",
+    bordermode = "ApplyStrokeMode",
+    bordercolor = "Color",
+    bopacity = "Transparency",
+    borderjoin = "LineJoinMode",
+    opacity = "BackgroundTransparency",
+    align = "align", --remove
+    round = "CornerRadius",
+    ps = "Position",
+    psx = "Position",
+    psy = "Position",
+    s = "Size",
+    sx = "Size",
+    sy = "Size",
+    cf = "CFrame",
+    vec3 = "Vector3",
+    vec2 = "Vector2",
+}
